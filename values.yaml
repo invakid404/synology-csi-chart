@@ -2,11 +2,11 @@
 clientInfoSecretName: ""
 # How to connect to your Synology Diskstation?
 connections:
-  - host: 192.168.1.1   # the IP V4 address of the Diskstation
-    https: false        # whether the port expects HTTPS or not
-    password: password  # the password of the dedicated CSI user
-    port: 5000          # the port for connecting to the Diskstation Manager application
-    username: username  # the name of the dedicated CSI user
+  - host: 192.168.1.1 # the IP V4 address of the Diskstation
+    https: false # whether the port expects HTTPS or not
+    password: password # the password of the dedicated CSI user
+    port: 5000 # the port for connecting to the Diskstation Manager application
+    username: username # the name of the dedicated CSI user
   - host: 192.168.1.1
     https: true
     password: password
@@ -34,6 +34,10 @@ images:
     image: k8s.gcr.io/sig-storage/csi-snapshotter
     pullPolicy: IfNotPresent
     tag: v4.2.1
+  plugin:
+    image: synology/synology-csi
+    pullPolicy: IfNotPresent
+    # tag: v1.1.1
 nameOverride: ""
 storageClasses:
   delete:
@@ -53,7 +57,8 @@ storageClasses:
   retain:
     reclaimPolicy: Retain
 volumeSnapshotClasses:
-  delete: { }
+  delete:
+    {}
     ## One of "Retain" or "Delete" (default):
     #deletionPolicy: Delete
     ## One of true or false (default):
